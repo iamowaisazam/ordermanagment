@@ -1,0 +1,15 @@
+/* .example-card {
+    max-width: 400px;
+  } */
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .dashboard-icons{
+    width: auto;
+    height: auto;
+    font-size: 85px;
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+  }
