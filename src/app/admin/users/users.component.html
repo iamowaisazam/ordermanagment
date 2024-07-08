@@ -1,1 +1,97 @@
-<p>users works!</p>
+<div fxLayout="row" fxLayoutAlign="" fxLayoutGap="20px" >
+
+    <div fxFlex="300px"   >
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+        <mat-card>
+            <mat-card-header>
+              <mat-card-title>Create User Form</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+               
+                    <div style="width: 95%;" fxLayout="column wrap"  fxLayoutWrap="wrap" fxLayoutGap="5px">
+                        <div fxFlex="100%">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" placeholder="Name" />
+                            <div *ngIf="this.myForm?.controls?.['name']?.errors" >
+                                <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
+                              
+                            </div>
+                        </div>
+                        <div fxFlex="100%"  >
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput placeholder="Email" />
+                            <div *ngIf="this.myForm?.controls?.['email']?.errors" >
+                                <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
+                            </div>
+                        </div>
+                        <div fxFlex="100%"  >
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" matInput placeholder="Password" />
+                            <div *ngIf="this.myForm?.controls?.['password']?.errors" >
+                                <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
+                            </div>
+                        </div>
+                    </div>
+               
+            </mat-card-content>
+            <mat-card-actions>
+              <button type="button" (clearForm)="clearForm()"  style="margin-right: 5px;" mat-flat-button color="accent" >Reset</button>
+             
+              <button type="submit" [disabled]="!this.myForm.valid" mat-flat-button color="primary" >Submit</button>
+            </mat-card-actions>
+          </mat-card>
+        </form> 
+    </div>
+
+
+<div fxFlex="auto" class="my-table">
+
+    <mat-card>
+        <mat-card-header>
+            <!-- <mat-card-title> -->
+                <div style="display: block;width: 100%;" >
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between" >
+                        <p class="mat-h2" >Users List</p>
+                        <p><button mat-flat-button color="primary" >Add New</button></p>
+                    </div>
+                </div>
+               
+            <!-- </mat-card-title>  -->
+        </mat-card-header>
+        <mat-card-content>
+            <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                 <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                 <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef> Email </th>
+                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="phone">
+                  <th mat-header-cell *matHeaderCellDef> Phone </th>
+                  <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef> Created at </th>
+                    <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+        </mat-card-content>
+      </mat-card>
+</div>
+
+</div>

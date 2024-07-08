@@ -30,3 +30,38 @@ body {
    margin: 0;
   //  font-family: Roboto, "Helvetica Neue", sans-serif; 
   }
+
+
+ 
+mat-label{
+  display: block!important;
+  width: 100% !important;
+  position: static!important;
+  padding: 10px 0px;
+}
+
+.mat-mdc-input-element{
+  display: block!important;
+  width: 100% !important;
+  border: 1px solid lightgray!important;
+  background: white!important;
+  // height: 10px!important;
+  position: static!important;
+  padding: 10px 3px!important;
+}
+
+.mat-mdc-table {
+  box-shadow:none!important;  
+}
+
+.mat-mdc-card-header{
+  width:  calc(100% - 32px)!important;
+}
+
+.mat-mdc-card-header-text{
+  width: 100%!important;
+}
+
+.mat-mdc-card-header{
+  display: block!important;
+}

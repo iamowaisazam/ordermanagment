@@ -1,1 +1,0 @@
-import{Db as s,Gb as a,ea as o,ob as r,pb as i}from"./chunk-NIVJVX5N.js";var d=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-users"]],standalone:!0,features:[a],decls:2,vars:0,template:function(n,c){n&1&&(r(0,"p"),s(1,"users works!"),i())}});let t=e;return t})();export{d as UsersComponent};
