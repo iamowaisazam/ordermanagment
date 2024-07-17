@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component ,inject} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -7,7 +7,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { MatDialog,MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AddUserComponent } from './add-user/add-user.component';
+import { FirebaseService } from '../../services/firebase.service';
+
 
 
 
@@ -24,6 +28,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
+    
 
   ],
   templateUrl: './users.component.html',
@@ -32,62 +37,75 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 
 export class UsersComponent {
 
+  readonly dialog = inject(MatDialog);
+
   displayedColumns:any = [
     'id',
     'name', 
-    'email', 
-    'phone', 
-    'created_at'];
-
-  dataSource: any = [
-    {
-      id: 1,
-      name: 1, 
-      email: 'Hydrogen', 
-      phone: 'H',
-      created_at: 'H',
-      password: 1.0079, 
-    },
+    'email',
+    'action',
   ];
 
-  myForm:FormGroup;
+  dataSource: any = [
+    
+  ];
+
 
   /**
    *
    */
-  constructor(private fb: FormBuilder) {
-    this.myForm = this.fb.group({
-      name: ['Owais Azam', Validators.required],
-      email: ['iamowaisazam@gmail.com', [Validators.required, Validators.email]],
-      password: ['owais123', [Validators.required]]
-    });
+  constructor(private db:FirebaseService) {
+
+    this.getUsrs();
+
   }
 
 
-  onSubmit() {
+ async getUsrs(){
 
-    alert('Form Not Submited');
+      let data = await this.db.getAllUsers()
 
-    if (this.myForm.valid) {
-      console.log('Form Submitted!', this.myForm.value);
+      let tabledata :any = [];
+      data.forEach(element => {
 
-      this.dataSource.push({
-        'name':'string',
-        'position': 1,
-        'weight': 1,
-        'symbol': 'string',
+        tabledata.push({
+            id: element.id,
+            name: element.name, 
+            email: element.email,
+          });
+
       });
-      this.dataSource = [...this.dataSource]; 
 
-
-    } else {
-      console.log('Form Submitted!', this.myForm);
-    }
-  }
-
-  clearForm() {
+      this.dataSource = tabledata;
 
   }
-  
+
+  async deleteUser(id:string){
+
+      let res:any = await this.db.deleteUser(id);
+      if(res){
+        this.getUsrs();
+      }
+
+  }
+
+  openDialog() {
+
+        const dialogRef = this.dialog.open(AddUserComponent,{
+          width:'500px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          this.getUsrs();
+            // console.log(`Dialog result: ${result}`);
+            // alert('Closed');
+        });
+
+  }
+
+
+
+
+
+
 
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { initializeApp } from "firebase/app";
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +16,15 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'mt';
+
+  /**
+   *
+   */
+  constructor() {
+    
+    initializeApp(environment.firebase);
+    
+  }
+
+ 
 }

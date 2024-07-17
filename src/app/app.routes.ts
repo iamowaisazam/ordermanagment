@@ -4,7 +4,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'admin/dashboard', pathMatch: 'full' },
     {
         path:'admin',
-        loadComponent: () => import('./shared/layout/layout.component').then(m => m.LayoutComponent),
+        loadComponent: () => import('./admin/shared/layout/layout.component').then(m => m.LayoutComponent),
         children:[
             {
                 path:'dashboard',
