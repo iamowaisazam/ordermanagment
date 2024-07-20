@@ -4,16 +4,16 @@ export const routes: Routes = [
    
     // { path: '', redirectTo: 'admin/dashboard', pathMatch: 'full' },
     
-    {
-        path:'',
-        loadComponent: () => import('./web/shared/weblayout/weblayout.component').then(m => m.WeblayoutComponent),
-        children:[
-            {
-                path:'',
-                loadComponent: () => import('./web/home/home.component').then(m => m.HomeComponent)
-            },
-        ]
-    },
+    // {
+    //     path:'',
+    //     loadComponent: () => import('./web/shared/weblayout/weblayout.component').then(m => m.WeblayoutComponent),
+    //     children:[
+    //         {
+    //             path:'',
+    //             loadComponent: () => import('./web/home/home.component').then(m => m.HomeComponent)
+    //         },
+    //     ]
+    // },
     {
         path:'login',
         loadComponent: () => import('./admin/login/login.component').then(m => m.LoginComponent)
@@ -22,7 +22,7 @@ export const routes: Routes = [
         path:'register',
         loadComponent: () => import('./admin/register/register.component').then(m => m.RegisterComponent)
     },
-    { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+    { path: '*', redirectTo: 'admin/dashboard', pathMatch: 'full' },
     {
         path:'admin',
         loadComponent: () => import('./admin/shared/layout/layout.component').then(m => m.LayoutComponent),
