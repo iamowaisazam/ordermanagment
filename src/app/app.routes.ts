@@ -22,7 +22,7 @@ export const routes: Routes = [
         path:'register',
         loadComponent: () => import('./admin/register/register.component').then(m => m.RegisterComponent)
     },
-    { path: '*', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: 'admin/dashboard', pathMatch: 'full' },
     {
         path:'admin',
         loadComponent: () => import('./admin/shared/layout/layout.component').then(m => m.LayoutComponent),
