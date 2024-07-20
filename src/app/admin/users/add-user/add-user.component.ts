@@ -6,8 +6,11 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from '@angula
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FirebaseService } from '../../../services/firebase.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-add-user',
@@ -18,9 +21,10 @@ import { FirebaseService } from '../../../services/firebase.service';
     FlexLayoutModule,
     CommonModule,
     MatFormFieldModule,
-    MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatIconModule,
+    MatInputModule
   ],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.css',
@@ -30,13 +34,7 @@ import { FirebaseService } from '../../../services/firebase.service';
 export class AddUserComponent {
 
   myForm:FormGroup;
- 
-
-  // constructor(
-  //   public dialogRef: MatDialogRef<DialogContentComponent>,
-  //   @Inject(MAT_DIALOG_DATA) public data: any
-  // ) { }
-
+  
   constructor(
     private db:FirebaseService,
     public dialogRef: MatDialogRef<AddUserComponent>,
@@ -44,9 +42,9 @@ export class AddUserComponent {
     private fb: FormBuilder) {
 
     this.myForm = this.fb.group({
-      name: ['Owais Azam', Validators.required],
-      email: ['iamowaisazam@gmail.com', [Validators.required, Validators.email]],
-      password: ['owais123', [Validators.required]]
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
 
   }
@@ -55,22 +53,17 @@ export class AddUserComponent {
   onSubmit() {
 
       if (this.myForm.valid) {
-        
         this.db.createUser(this.myForm.value);
-
       } else {
         console.log('Form Submitted!', this.myForm);
       }
 
-
       this.dialogRef.close();
-
   }
 
   cancelForm() : void {
-
-      // alert('form clear');
       this.dialogRef.close();
   }
+
 
 }

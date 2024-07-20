@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, getDocs, doc,getDoc,getFirestore, deleteDoc  } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc,getDoc,getFirestore, deleteDoc, updateDoc  } from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,23 @@ export class FirebaseService {
 
   }
 
+  async editUser(data: any): Promise<any> {
+    // try {
+      const userDoc = doc(this.db, "users",data.id);
+      const userSnapshot = await getDoc(userDoc);
+      if (userSnapshot.exists()) {
+        return {  ...userSnapshot.data(), id: userSnapshot.id };
+      } else {
+        console.log("No such document!");
+        return null;
+      }
+    // } catch (e) {
+    //   console.error("Error getting document: ", e);
+    //   alert("Error while getting document");
+    //   return null;
+    // }
+  }
+
   async getAllUsers() {
     let result: any[] = []
     const querySnapshot = await getDocs(collection(this.db, "users"));
@@ -49,6 +66,24 @@ export class FirebaseService {
     // } catch (e) {
       // console.error("Error removing document: ", e);
       // alert("Error while deleting");
+    // }
+  }
+
+  async updateUser(docId: string, data: any) {
+
+    // try {
+    
+      const userDoc = doc(this.db, "users", docId);
+      await updateDoc(userDoc, data);
+
+      console.log("Document successfully updated!");
+      return true;
+
+    // } catch (e) {
+      
+      // console.error("Error updating document: ", e);
+      // alert("Error while updating");
+      // return false;
     // }
   }
 

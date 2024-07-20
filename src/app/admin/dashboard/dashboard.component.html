@@ -1,22 +1,47 @@
-<mat-grid-list cols="4"  gutterSize="20px" >
+
+  <div class="" fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="space-between" >
 
     @for (tile of tiles; track tile) {
-      <mat-grid-tile >
-
-        <mat-card style="width: 100%;" class="example-card" appearance="outlined">
-            <mat-card-content>
-
-              <div style="text-align: center;" class="div">
-                <mat-icon class="dashboard-icons">logout</mat-icon>
-                <h3 style="margin: 0px;" >Revenue</h3>
-                <h5 style="margin: 0px;" >49/50</h5>
-                <!-- <p>Get More Space...</p> -->
-              </div>
-
-            </mat-card-content>
-          </mat-card>
-      </mat-grid-tile>
-    }
       
-  </mat-grid-list>
+          <div  fxFlex="24%" fxFlex.lt-lg="50%" fxFlex.lt-sm="100%" class="dashboard-boxes" >
+            <div  style="padding: 10px;" fxLayout="row"  fxLayoutAlign="space-between" >
+              <div fxFlex="30%">
+                <mat-icon [style.color]="tile.iconColor" [style.background-color]="tile.color" class="dashboard-icons">logout</mat-icon>
+              </div>
+              <div fxFlex="60%">
+                <h4 class="mat-subtitle-1">{{tile.value}}</h4>
+                <h6 class="mat-subtitle-1">{{tile.title}}</h6>
+              </div>
+            </div>
+          </div>
+    }
+  </div>
+
+
+<!-- <div class="div" style="height: 50px;"> -->
+    <!-- <mat-grid-list style="border:1px solid" cols="4" rowHeight="fit"  gutterSize="0px" >
+
+
+      @for (tile of tiles; track tile) {
+
+
+        <mat-grid-tile >
+
+            <div style="border: 1px solid;" class="dashboard-boxes" fxLayout="row"  fxLayoutAlign="start center" >
+                <div>
+                  <mat-icon class="dashboard-icons">logout</mat-icon>
+                </div>
+                <div style="padding:7px 11px;" >
+                  <h4 class="mat-subtitle-1">1020</h4>
+                  <h6 class="mat-subtitle-1">Views</h6>
+                </div>
+            </div>
+        
+
+        </mat-grid-tile>
+      }
+
+    </mat-grid-list> -->
+<!-- </div> -->
+
 

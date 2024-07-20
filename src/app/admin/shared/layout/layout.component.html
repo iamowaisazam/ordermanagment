@@ -1,48 +1,36 @@
 
 
-<mat-sidenav-container class="{{sideNav.opened ? '' : 'my_menu_collpase' }} my_side_bar_container example-container" style="height: 100vh;" >
-    <mat-sidenav #sideNav opened mode="side"  class="sidebar"   >
-
-      <!-- <div fxLayout="row" fxLayoutAlign="center">  -->
+<mat-sidenav-container class="{{sideNav.opened ? '' : 'my_menu_collpase' }}  example-container">
+    <mat-sidenav #sideNav opened mode="side">
          <div class="profile_box" > 
-           @if(sideNav.opened){
-            <p>CREATIVE TIM</p>
-          }@else{
-            <!-- <mat-icon>dashboard</mat-icon> -->
-          }
-
-          <button (click) ="sideNav.toggle()" mat-icon-button class="menu_open_button example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon  >{{sideNav.opened ? 'menu_open' : 'menu' }}</mat-icon>
-          </button>
+            @if(sideNav.opened){
+              <p>CREATIVE TIM</p>
+            }@else{
             
-           <!-- <mat-icon>dashboard</mat-icon> -->
-         </div> 
-       <!-- </div> -->
-
-      
-
-      <mat-nav-list>
-        <a mat-list-item [routerLink]="'/admin/dashboard'" routerLinkActive="active">
-          <mat-icon matListItemIcon  >dashboard</mat-icon>
-          <span>Dashboard</span>
-        </a>
-        <a mat-list-item routerLink="/admin/users" routerLinkActive="active">
-          <mat-icon matListItemIcon  >group</mat-icon>
-          <span>Users</span>
-        </a>
-        <a mat-list-item routerLink="/admin/settings" routerLinkActive="active">
-          <mat-icon matListItemIcon  >settings</mat-icon>
-          <span matListItemTitle >Settings</span>
-        </a>
-      </mat-nav-list>
+            }
+         </div>
+          <mat-nav-list>
+            <a mat-list-item [routerLink]="'/admin/dashboard'" routerLinkActive="active">
+              <mat-icon matListItemIcon  >dashboard</mat-icon>
+              <span>Dashboard</span>
+            </a>
+            <a mat-list-item routerLink="/admin/users" routerLinkActive="active">
+              <mat-icon matListItemIcon  >group</mat-icon>
+              <span>Users</span>
+            </a>
+            <a mat-list-item routerLink="/admin/settings" routerLinkActive="active">
+              <mat-icon matListItemIcon  >settings</mat-icon>
+              <span matListItemTitle >Settings</span>
+            </a>
+          </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
 
       <mat-toolbar color="primary" >
-        <!-- <button (click) ="sideNav.toggle()" mat-icon-button class="menu_open_button example-icon" aria-label="Example icon-button with menu icon">
+         <button (click) ="sideNav.toggle()" mat-icon-button class=" example-icon" aria-label="Example icon-button with menu icon">
           <mat-icon  >{{sideNav.opened ? 'menu_open' : 'menu' }}</mat-icon>
-        </button> -->
-        <!-- <span class="logo_text" >My App</span> -->
+        </button> 
+
         <span class="example-spacer"></span>
         
       

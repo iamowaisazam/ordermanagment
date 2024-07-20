@@ -1,10 +1,16 @@
 @use '@angular/material' as mat;
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 
 $my-primary: mat.define-palette(mat.$indigo-palette, 500);
 $my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $my-warn: mat.define-palette(mat.$orange-palette);
+
+
+
+
 
 $my-theme: mat.define-light-theme((
  color: (
@@ -12,7 +18,9 @@ $my-theme: mat.define-light-theme((
    accent: $my-accent,
    warn: $my-warn,
  ),
- typography: mat.define-typography-config(),
+ typography: mat.define-typography-config(
+  $font-family: 'Poppins, sans-serif',
+ ),
  density: 0,
 ));
 
@@ -32,6 +40,18 @@ body {
   }
 
 
+
+
+
+  //TypoGraphhy
+
+  .mat-h1, .mat-h2, .mat-h3, .mat-h4, .mat-h5, .mat-h6,
+.mat-body-1, .mat-body-2, .mat-subtitle-1, .mat-subtitle-2 {
+  margin-bottom: 0px !important;
+}
+
+
+  //Forms
  
 mat-label{
   display: block!important;
@@ -39,6 +59,7 @@ mat-label{
   position: static!important;
   padding: 10px 0px;
   color: rgba(0, 0, 0, 0.87)!important;
+  font-size: 15px;
 }
 
 .mat-mdc-input-element{
@@ -46,15 +67,36 @@ mat-label{
   width: 100% !important;
   border: 1px solid lightgray!important;
   background: white!important;
-  // height: 10px!important;
   position: static!important;
   padding: 10px 3px!important;
 }
 
-.mat-mdc-table {
-  box-shadow:none!important;  
+.mat-mdc-input-element:focus-visible {
+  outline: none!important;
 }
 
+
+.mat-mdc-input-element:focus-visible {
+  outline: none!important;
+}
+
+Form .errors p {
+  padding: 3px 0px;
+  font-size: 13px!important;
+  color: red;
+}
+
+
+
+//Table
+
+[mat-table]{
+    box-shadow:none!important;  
+}
+
+
+
+//Cards
 .mat-mdc-card-header{
   width:  calc(100% - 32px)!important;
 }
@@ -63,6 +105,48 @@ mat-label{
   width: 100%!important;
 }
 
-.mat-mdc-card-header{
+
+mat-card-header{
+  background: #3f51b5;
+  color: white;
   display: block!important;
+}
+
+mat-card-title{
+
+}
+
+
+// Modal
+
+[mat-dialog-title]{
+  background: #3f51b5;
+  color: white;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  margin: 0px;
+  padding: 10px 0px!important;
+  color: white!important;
+  font-family: 'poppins';
+  // line-height: 0
+  // padding-bottom: 24px!important;
+} 
+
+.mdc-dialog__title::before {
+  display: inline-block;
+  width: 0;
+  height: auto!important; 
+  content: "";
+  vertical-align: 0;
+}
+
+[mat-dialog-title] .mat-subtitle-1 {
+  margin: 0px;
+}
+
+.modal_close{
+  position: absolute;
+  right: 16px;
+  font-size: 31px;
+  cursor: pointer;
 }

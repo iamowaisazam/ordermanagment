@@ -11,6 +11,8 @@ import { MatDialog,MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AddUserComponent } from './add-user/add-user.component';
 import { FirebaseService } from '../../services/firebase.service';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -28,8 +30,7 @@ import { FirebaseService } from '../../services/firebase.service';
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
-    
-
+    MatIconModule
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
@@ -96,16 +97,26 @@ export class UsersComponent {
         });
         dialogRef.afterClosed().subscribe(result => {
           this.getUsrs();
-            // console.log(`Dialog result: ${result}`);
-            // alert('Closed');
         });
 
   }
 
 
+async editDialog(id:any) {
 
-
-
+      let data = await this.db.editUser({id});
+      if(data){
+        const dialogRef = this.dialog.open(EditUserComponent,{
+          width:'500px',
+          data:data,
+        });
+        
+        dialogRef.afterClosed().subscribe(result => {
+          this.getUsrs();
+        });
+      }
+       
+}
 
 
 }

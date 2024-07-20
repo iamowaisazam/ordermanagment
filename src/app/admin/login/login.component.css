@@ -1,0 +1,70 @@
+
+
+.main-container {
+    background-image: url('/assets/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    padding: 15px;
+  }
+
+  
+  .wrap-login100 {
+    width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-right: 55px;
+    padding-left: 55px;
+    padding-bottom: 54px;
+    padding-top: 65px;
+}
+
+
+.login100-form-title {
+    display: block;
+    font-size: 55px;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: normal;
+    font-family: fantasy;
+    letter-spacing: 3px;
+}
+
+
+.login100-form-btn {
+    font-size: 27px;
+    font-family: system-ui;
+    border: none;
+    border-radius: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    width: 100%;
+    background: #a64bf4;
+    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+}
+
+
+.wrap-login100-form-btn{
+    margin-top: 20px;
+
+}
+
+label{
+    display: block;
+    padding: 9px 0px;
+    font-size: 16px;
+}
+
+.seprator{
+    padding: 10px 0px;
+
+}
+

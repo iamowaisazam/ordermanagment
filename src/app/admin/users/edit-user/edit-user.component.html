@@ -1,6 +1,6 @@
 
 
-<div  mat-dialog-title> Create New User
+<div  mat-dialog-title> Edit User
   <mat-icon (click) = "this.cancelForm()"  class="modal_close" >close</mat-icon>
 </div>
 
@@ -11,9 +11,9 @@
                         <mat-label>Name</mat-label>
                         <input matInput class="mat-mdc-input-element" formControlName="name" placeholder="Name" />
                         @if(this.myForm?.controls?.['name']?.touched){
-                         <div class="errors" *ngIf="this.myForm?.controls?.['name']?.errors" >
-                            <p style="color: red;" class="mat-body-1">  Invalid Name Field</p>              
-                         </div>
+                            <div class="errors" *ngIf="this.myForm?.controls?.['name']?.errors" >
+                                <p class="mat-body-1">  Invalid Name Field</p>              
+                            </div>
                         }
                     </div>
                     <div fxFlex="100%"  >
@@ -21,7 +21,7 @@
                         <input class="mat-mdc-input-element" formControlName="email" matInput placeholder="Email" />
                         @if(this.myForm?.controls?.['email']?.touched){
                         <div class="errors" *ngIf="this.myForm?.controls?.['email']?.errors" >
-                            <p style="color: red;" class="mat-body-1">  Invalid Email Field</p>
+                            <p class="mat-body-1">  Invalid Email Field</p>
                         </div>
                         }
                     </div>
@@ -30,7 +30,7 @@
                         <input class="mat-mdc-input-element" formControlName="password" matInput placeholder="Password" />
                         @if(this.myForm?.controls?.['password']?.touched){
                         <div class="errors" *ngIf="this.myForm?.controls?.['password']?.errors" >
-                            <p style="color: red;" class="mat-body-1">  Invalid Password Field</p>
+                            <p class="mat-body-1">  Invalid Password Field</p>
                         </div>
                         }
                     </div>
@@ -38,6 +38,6 @@
     </mat-dialog-content>
     <mat-dialog-actions align="center">
             <button style="width: 48%;" color="primary" type="button" mat-flat-button (click)="this.cancelForm()" >Cancel</button>
-            <button style="width: 48%;" color="accent" type="submit"  mat-flat-button   >Submit</button>
+            <button style="width: 48%;" [disabled]="!this.myForm.valid" color="accent" type="submit"  mat-flat-button   >Submit</button>
     </mat-dialog-actions>
 </form> 
