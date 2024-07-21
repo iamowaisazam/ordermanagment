@@ -13,6 +13,11 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { FirebaseService } from '../../services/firebase.service';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 
 
@@ -41,7 +46,7 @@ export class UsersComponent {
   readonly dialog = inject(MatDialog);
 
   displayedColumns:any = [
-    'id',
+    'key',
     'name', 
     'email',
     'action',
@@ -55,9 +60,10 @@ export class UsersComponent {
   /**
    *
    */
-  constructor(private db:FirebaseService) {
+  constructor(private db:FirebaseService,private _snackBar: MatSnackBar) {
 
     this.getUsrs();
+
 
   }
 
@@ -65,15 +71,16 @@ export class UsersComponent {
  async getUsrs(){
 
       let data = await this.db.getAllUsers()
-
       let tabledata :any = [];
-      data.forEach(element => {
+
+      data.forEach((element,key) => {
 
         tabledata.push({
             id: element.id,
+            key:key + 1,
             name: element.name, 
             email: element.email,
-          });
+        });
 
       });
 
@@ -85,7 +92,25 @@ export class UsersComponent {
 
       let res:any = await this.db.deleteUser(id);
       if(res){
+        
+        this._snackBar.open('User Deleted Succesfully', 'X', {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          duration: 3000,
+          panelClass: ['custom-snackbar-success']
+        });
+
         this.getUsrs();
+
+      }else{
+
+        this._snackBar.open('User Deleted Succesfully', 'X', {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          duration: 3000,
+          panelClass: ['custom-snackbar-success']
+        });
+
       }
 
   }
@@ -96,7 +121,17 @@ export class UsersComponent {
           width:'500px'
         });
         dialogRef.afterClosed().subscribe(result => {
-          this.getUsrs();
+
+          if(result){
+              this._snackBar.open('New User Added', 'X', {
+                horizontalPosition: 'end',
+                verticalPosition: 'top',
+                duration: 3000,
+                panelClass: ['custom-snackbar-success']
+              });
+              this.getUsrs();
+          }
+
         });
 
   }

@@ -1,75 +1,37 @@
-
-
-
-<div class="main-container"  fxLayout="row" fxLayoutAlign="center" >
-    <div class="wrap-login100" >
-        <form action="">
+<div class="main-container"  >
+    <form [formGroup]="this.myForm" (ngSubmit)="onSubmit()" class="wrap-login100">
         <p class="login100-form-title" >Login</p>
-
         <div>
+
             <div class="seprator" >
                 <label>Email</label>
                 <input class="mat-mdc-input-element" formControlName="email" matInput placeholder="Email" />
-                <div *ngIf="this.myForm?.controls?.['email']?.errors" >
-                    <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
-                </div>
+                @if(this.myForm?.controls?.['email']?.touched){
+                    <div class="errors" *ngIf="this.myForm?.controls?.['email']?.errors" >
+                        <p class="mat-body-1">  Invalid Email Field</p>              
+                    </div>
+                    }
             </div>
+
             <div class="seprator" >
                 <label>Password</label>
-                <input class="mat-mdc-input-element" formControlName="password" matInput placeholder="Password" />
-                <div *ngIf="this.myForm?.controls?.['password']?.errors" >
-                    <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
+                <input type="password" class="mat-mdc-input-element" formControlName="password" matInput placeholder="Password" />
+                @if(this.myForm?.controls?.['password']?.touched){
+                <div class="errors" *ngIf="this.myForm?.controls?.['password']?.errors" >
+                    <p class="mat-body1"> Invalid Password Field</p>
                 </div>
+                }
             </div>
-            <div class="seprator">
-                <button class="login100-form-btn">Login</button>
+            
+            <div class="button-container">
+                <button style="cursor: pointer;" [disabled]="!this.myForm.valid" class="login100-form-btn">Login</button>
             </div>
-
+            
+            <p style="text-align: center;" > 
+                <a routerLink="/register">If You Dont Have Account</a>
+            </p>
         </div>
-        
-
-        <!-- <mat-card>
-            <mat-card-header>
-                <mat-card-title style="text-align: center;" >Login</mat-card-title>
-            </mat-card-header>
-
-            <mat-card-content>
-                <form #youform  >
-                    <div fxLayout="column wrap"  fxLayoutWrap="wrap" fxLayoutGap="5px">
-                            <div fxFlex="100%">
-                                <mat-label>Name</mat-label>
-                                <input matInput class="mat-mdc-input-element" formControlName="name" placeholder="Name" />
-                                <div *ngIf="this.myForm?.controls?.['name']?.errors" >
-                                    <p style="color: red;" class="mat-body1">  Invalid Name Field</p>              
-                                </div>
-                            </div>
-                            <div fxFlex="100%"  >
-                                <mat-label>Email</mat-label>
-                                <input class="mat-mdc-input-element" formControlName="email" matInput placeholder="Email" />
-                                <div *ngIf="this.myForm?.controls?.['email']?.errors" >
-                                    <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
-                                </div>
-                            </div>
-                            <div fxFlex="100%"  >
-                                <mat-label>Password</mat-label>
-                                <input class="mat-mdc-input-element" formControlName="password" matInput placeholder="Password" />
-                                <div *ngIf="this.myForm?.controls?.['password']?.errors" >
-                                    <p style="color: red;" class="mat-body1">  Invalid Name Field</p>
-                                </div>
-                            </div>
-                        </div>
-              </form> 
-            </mat-card-content>
-            <mat-card-actions style="justify-content: center;" >
-                <button color="primary" type="submit"  mat-flat-button >Login</button>
-              </mat-card-actions>
-        </mat-card> -->
-
-    
-        
-        
-        </form>
-    </div>    
+    </form>
 </div>
 
 

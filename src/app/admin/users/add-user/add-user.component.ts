@@ -58,7 +58,7 @@ export class AddUserComponent {
         console.log('Form Submitted!', this.myForm);
       }
 
-      this.dialogRef.close();
+      this.dialogRef.close(this.myForm.value);
   }
 
   cancelForm() : void {

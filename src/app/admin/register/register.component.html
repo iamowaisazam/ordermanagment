@@ -1,1 +1,50 @@
-<p>register works!</p>
+<div class="main-container"  >
+
+        <form [formGroup]="this.myForm" (ngSubmit)="onSubmit()" class="wrap-login100">
+            <p class="login100-form-title" >Register</p>
+
+            <div>
+                <div class="seprator" >
+                    <label>Name</label>
+                    <input class="mat-mdc-input-element" formControlName="name" matInput placeholder="Name" />
+                    @if(this.myForm?.controls?.['name']?.touched){
+                        <div class="errors" *ngIf="this.myForm?.controls?.['name']?.errors" >
+                           <p class="mat-body-1">  Invalid Name Field</p>              
+                        </div>
+                       }
+                </div>
+
+                <div class="seprator" >
+                    <label>Email</label>
+                    <input class="mat-mdc-input-element" formControlName="email" matInput placeholder="Email" />
+                    @if(this.myForm?.controls?.['email']?.touched){
+                        <div class="errors" *ngIf="this.myForm?.controls?.['email']?.errors" >
+                           <p class="mat-body-1">  Invalid Email Field</p>              
+                        </div>
+                       }
+                </div>
+
+                <div class="seprator" >
+                    <label>Password</label>
+                    <input type="password" class="mat-mdc-input-element" formControlName="password" matInput placeholder="Password" />
+                    @if(this.myForm?.controls?.['password']?.touched){
+                    <div class="errors" *ngIf="this.myForm?.controls?.['password']?.errors" >
+                        <p class="mat-body1"> Invalid Password Field</p>
+                    </div>
+                    }
+                </div>
+              
+                <div class="button-container">
+                    <button class="login100-form-btn">Register</button>
+                </div>
+
+                <p style="text-align: center;" > 
+                    <a routerLink="/login">If You Already Have Account</a>
+                </p>
+
+            </div>
+        </form>
+</div>
+
+
+

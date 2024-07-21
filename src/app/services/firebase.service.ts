@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { collection, addDoc, getDocs, doc,getDoc,getFirestore, deleteDoc, updateDoc  } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  private db?: any
+  private db?: any;
+  private auth: any;
+
 
   constructor() { 
 
     this.db = getFirestore();
+    this.auth = getAuth();
+
   }
 
   async createUser(data:any)  {
@@ -86,6 +92,36 @@ export class FirebaseService {
       // return false;
     // }
   }
+
+  async register(email: string, password: string,displayName:string) {
+
+    try {
+
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+
+      await updateProfile(userCredential.user, { displayName });
+
+      return userCredential.user;
+    } catch (error) {
+
+      throw error;
+    }
+
+  }
+
+
+  async login(email: string, password: string) {
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      return userCredential.user;
+    } catch (error) {
+
+      throw error;
+    }
+
+  }
+
 
 
 }

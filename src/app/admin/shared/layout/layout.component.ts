@@ -10,7 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -35,5 +36,19 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
+
+  constructor(
+    private _snackBar: MatSnackBar,
+    private router: Router
+  ) {
+
+
+  }
+
+  logout(){
+
+    this.router.navigate(['/login']);
+  }
+
 
 }

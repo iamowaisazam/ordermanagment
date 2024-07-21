@@ -6,18 +6,25 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FirebaseService } from '../../services/firebase.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    RouterLinkActive,
+    RouterLink,
     MatButtonModule, 
     FlexLayoutModule,
     CommonModule,
     MatFormFieldModule,
-    MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatIconModule,
+    MatInputModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -28,11 +35,12 @@ export class LoginComponent {
 
   constructor(
     private db:FirebaseService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {
 
     this.myForm = this.fb.group({
-      name: ['Owais Azam', Validators.required],
       email: ['iamowaisazam@gmail.com', [Validators.required, Validators.email]],
       password: ['owais123', [Validators.required]]
     });
@@ -44,11 +52,38 @@ export class LoginComponent {
   onSubmit() {
 
     if (this.myForm.valid) {
-      
-      this.db.createUser(this.myForm.value);
+
+      this.db.login(this.myForm.value.email,this.myForm.value.password)
+      .then((response) =>{
+
+            this._snackBar.open('Logged In Successfully', 'Close',{
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 3000,
+              panelClass: ['custom-snackbar-success']
+            });
+
+            this.router.navigate(['/admin/dashboard']);
+
+
+      }).catch((error) => {
+
+          this._snackBar.open(error.code, 'Close',{
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            duration: 3000,
+            panelClass: ['custom-snackbar-error']
+          });
+        
+      });
 
     } else {
-      console.log('Form Submitted!', this.myForm);
+      this._snackBar.open("Form Validation Failed", 'Close',{
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        duration: 3000,
+        panelClass: ['custom-snackbar-error']
+      });
     }
 
 
