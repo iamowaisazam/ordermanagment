@@ -1,4 +1,4 @@
-<div style="background-image: url('../assets/bg.jpg')" class="main-container"  >
+<div [ngStyle]="{'background-image': 'url(' + this.base + 'assets/bg.jpg)'}" class="main-container"  >
 
         <form [formGroup]="this.myForm" (ngSubmit)="onSubmit()" class="wrap-login100">
             <p class="login100-form-title" >Register</p>

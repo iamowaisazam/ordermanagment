@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, inject} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
-import { CommonModule } from '@angular/common';
+import { CommonModule  } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,11 +32,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class RegisterComponent {
 
    myForm:FormGroup;
+   base:any;
 
   constructor(
     private db:FirebaseService,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
   ) {
 
     this.myForm = this.fb.group({
@@ -45,6 +46,13 @@ export class RegisterComponent {
       password: ['', [Validators.required]]
     });
 
+    this.base = document.getElementsByTagName('base')[0]?.baseURI;
+
+    console.log(this.base);
+    
+
+
+   
   }
 
  async onSubmit() {
