@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-register',
@@ -31,8 +33,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class RegisterComponent {
 
+   base_url:any;
    myForm:FormGroup;
-   base:any;
 
   constructor(
     private db:FirebaseService,
@@ -40,19 +42,16 @@ export class RegisterComponent {
     private _snackBar: MatSnackBar,
   ) {
 
+    this.base_url = environment.asset_url;
+
     this.myForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
 
-    this.base = document.getElementsByTagName('base')[0]?.baseURI;
-
-    console.log(this.base);
-    
-
-
    
+  
   }
 
  async onSubmit() {

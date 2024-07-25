@@ -1,4 +1,5 @@
 export const environment = {
+    asset_url:"/ordermanagment/",
     production: false,
     firebase: {
         apiKey: "AIzaSyC_vN7G9ihLR4gRJ0YtGVKKQoKitoVO2yk",

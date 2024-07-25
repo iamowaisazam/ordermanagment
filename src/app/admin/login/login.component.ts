@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -33,12 +34,16 @@ export class LoginComponent {
 
    myForm:FormGroup;
 
+   base_url:any;
+
   constructor(
     private db:FirebaseService,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private router: Router
   ) {
+
+    this.base_url = environment.asset_url;
 
     this.myForm = this.fb.group({
       email: ['iamowaisazam@gmail.com', [Validators.required, Validators.email]],
